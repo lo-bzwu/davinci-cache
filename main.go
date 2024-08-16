@@ -236,8 +236,8 @@ func main() {
 		hash := sha1.Sum([]byte("c" + queryClasses + "t" + queryTeachers + cs.ETag))
 		etag := "\"" + hex.EncodeToString(hash[:]) + "\""
 		if r.Header.Get("If-None-Match") == etag {
-			w.WriteHeader(http.StatusNotModified)
 			header.Set("ETag", etag)
+			w.WriteHeader(http.StatusNotModified)
 			return
 		}
 
