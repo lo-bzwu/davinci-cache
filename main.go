@@ -220,7 +220,7 @@ func main() {
 		queryClasses := r.URL.Query().Get("classes")
 		queryTeachers := r.URL.Query().Get("teachers")
 
-		fmt.Println("received query for", queryClasses, queryTeachers)
+		fmt.Println("received query for", queryClasses, queryTeachers, r.Header.Get("If-None-Match"))
 
 		if len(queryClasses) == 0 && len(queryTeachers) == 0 {
 			http.Error(w, "provide classes with ?classes=xxx,xxx&teachers=xxx,xxx", http.StatusBadRequest)
